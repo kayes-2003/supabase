@@ -13,7 +13,7 @@ function App() {
 
       if (error) {
         console.error('Supabase error:', error)
-        setError(error.message)
+        setError(error.message) 
       } else {
         setData(data)
       }
