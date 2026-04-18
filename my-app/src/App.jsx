@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
-import { supabase } from './supabaseClient'
+import { useState, useEffect } from 'react'
+import supabase from './supabase-client'
+import Dashboard from './components/Dashboard';
+import './App.css'
 
 function App() {
   const [data, setData] = useState([])
   const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     async function fetchData() {
@@ -12,21 +15,26 @@ function App() {
         .select('*')
 
       if (error) {
-        console.error('Supabase error:', error)
-        setError(error.message) 
+        setError(error.message)
       } else {
         setData(data)
       }
+      setLoading(false)
     }
 
     fetchData()
   }, [])
 
   return (
-    <div>
-      <h1>Supabase + React + Vite</h1>
+    <div style={{ padding: '2rem', fontFamily: 'sans-serif' }}>
+      <h1>Supabase + React + Vite ✅</h1>
+      <Dashboard />
+
+      {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>Error: {error}</p>}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      {!loading && !error && (
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+      )}
     </div>
   )
 }
