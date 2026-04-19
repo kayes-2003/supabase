@@ -1,7 +1,17 @@
-function Header(){
-    return(
+import { useNavigate } from "react-router-dom";
+import supabase from "./supabase-client";
+
+function Header() {
+    const navigate = useNavigate();
+
+    const handleSignOut = async () => {
+        await supabase.auth.signOut();
+        navigate("/");
+    };
+
+    return (
         <>
-            <header>
+            <header className="header">
                 <h1>
                     <svg
                         width="28"
@@ -10,19 +20,23 @@ function Header(){
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         style={{ marginRight: "8px" }}
-                        >
+                    >
                         <path
                             d="M12 2v8M12 14v8M4.93 4.93l5.66 5.66M13.41 13.41l5.66 5.66M2 12h8M14 12h8M4.93 19.07l5.66-5.66M13.41 10.59l5.66-5.66"
                             stroke="#29d952"
                             strokeWidth="2.5"
                             strokeLinecap="round"
                         />
-                        </svg>
-                        Sales Team Dashboard
+                    </svg>
+                    Sales Team Dashboard
                 </h1>
+
+                <button className="signout-btn" onClick={handleSignOut}>
+                    Sign Out
+                </button>
             </header>
         </>
-    )
+    );
 }
 
 export default Header;

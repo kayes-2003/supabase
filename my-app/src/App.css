@@ -372,3 +372,32 @@
   font-size: 0.88rem;
   margin: 0;
 }
+
+
+
+
+/* Add to your App.css */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+.signout-btn {
+    padding: 0.5rem 1.2rem;
+    background: transparent;
+    border: 1.5px solid #ff6b6b;
+    color: #ff6b6b;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.signout-btn:hover {
+    background: #ff6b6b;
+    color: #0f0f0f;
+}
